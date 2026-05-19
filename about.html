@@ -1,69 +1,27 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>&gt; ABOUT _ Kai Blog</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <canvas id="particle-canvas"></canvas>
-  <div id="reading-progress"></div>
-
-  <nav class="navbar">
-    <div class="nav-inner">
-      <a class="nav-brand" href="index.html">[ KAI ]</a>
-      <div class="nav-links">
-        <a href="index.html">HOME</a>
-        <a href="archive.html">POSTS</a>
-        <a href="projects.html">PROJ</a>
-        <a href="about.html">ABOUT</a>
-        <button id="theme-toggle" class="theme-toggle" aria-label="toggle theme">[*]</button>
-      </div>
-    </div>
-  </nav>
-
-  <main class="container">
-    <h1 class="page-title">&gt; ABOUT_ME</h1>
-    <div class="about-content">
-      <div class="about-avatar"></div>
-      <div class="info-row">
-        <span class="about-label">NAME</span>
-        <span>Kai</span>
-      </div>
-      <div class="info-row">
-        <span class="about-label">EMAIL</span>
-        <span>your@email.com</span>
-      </div>
-      <div class="info-row">
-        <span class="about-label">BIO</span>
-        <span>A regular person who loves life, reading, and coding. Here I document daily thoughts and fun side projects. Welcome!</span>
-      </div>
-    </div>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-social">
-      <a href="https://github.com/Ricardo-Kai-Zheng" target="_blank" rel="noopener" title="GitHub">
-        <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12 24 5.37 18.63 0 12 0z"/></svg>
-      </a>
-      <a href="mailto:your@email.com" title="Email">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
-      </a>
-      <a href="#" title="RSS">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 019 9"/><circle cx="5" cy="19" r="2"/><path d="M4 4a16 16 0 0116 16"/></svg>
-      </a>
-    </div>
-    <div class="footer-nav">
-      <a href="index.html">HOME</a>
-      <a href="archive.html">POSTS</a>
-      <a href="projects.html">PROJ</a>
-      <a href="about.html">ABOUT</a>
-    </div>
-    <p class="footer-copy">(c) 2026 KAI BLOG | POWERED BY GITHUB PAGES</p>
-  </footer>
-
-  <button id="scroll-top-btn" class="scroll-top-btn" aria-label="back to top">^</button>
-  <script src="js/main.js"></script>
-</body>
-</html>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>About | Kai Blog</title><link rel="stylesheet" href="css/style.css"></head>
+<body><div id="reading-progress"></div>
+<section class="hero-canvas-wrap" style="height:30vh;min-height:200px"><canvas id="scene-canvas"></canvas></section>
+<main class="container"><h1 class="page-title">~ About Me ~</h1>
+<div class="about-content">
+<div class="about-card">
+<div class="info-row"><span class="about-label">NAME</span><span>Kai</span></div>
+<div class="info-row"><span class="about-label">EMAIL</span><span>your@email.com</span></div>
+<div class="info-row"><span class="about-label">BIO</span><span>A regular person who loves life, reading, and coding.</span></div>
+</div></div></main>
+<nav class="navbar"><div class="nav-inner">
+<a class="nav-brand" href="index.html"><canvas class="nav-icon" width="24" height="24" data-icon="home"></canvas></a>
+<div class="nav-links">
+<a href="index.html"><canvas class="nav-icon" width="24" height="24" data-icon="home"></canvas></a>
+<a href="archive.html"><canvas class="nav-icon" width="24" height="24" data-icon="book"></canvas></a>
+<a href="projects.html"><canvas class="nav-icon" width="24" height="24" data-icon="pickaxe"></canvas></a>
+<a href="about.html"><canvas class="nav-icon" width="24" height="24" data-icon="player"></canvas></a>
+<button id="theme-toggle" class="theme-toggle">[O]</button></div></div></nav>
+<footer class="site-footer"><div class="footer-social">
+<a href="https://github.com/Ricardo-Kai-Zheng" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12 24 5.37 18.63 0 12 0z"/></svg></a>
+<a href="mailto:your@email.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg></a></div>
+<div class="footer-nav"><a href="index.html">Home</a><a href="archive.html">Posts</a><a href="projects.html">Projects</a><a href="about.html">About</a></div>
+<p class="footer-copy">(c) 2026 KAI BLOG</p></footer>
+<button id="scroll-top-btn" class="scroll-top-btn">^</button>
+<script src="js/scene.js"></script><script src="js/main.js"></script></body></html>
