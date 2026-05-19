@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Posts | Kai Blog</title><link rel="stylesheet" href="css/style.css"></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Post List | Kai Blog</title><link rel="stylesheet" href="css/style.css"></head>
 <body><div id="reading-progress"></div>
 <section class="hero-canvas-wrap" style="height:25vh;min-height:160px"><canvas id="scene-canvas"></canvas></section>
-<main class="archive-container"><h1 class="page-title">~ Quest Log ~</h1>
+<main class="archive-container"><h1 class="page-title">~ Post List ~</h1>
 <ul id="archive-list" class="archive-list"><li class="skeleton-card" style="display:flex;gap:10px"><span class="skeleton-line" style="width:80px"></span><span class="skeleton-line long"></span></li><li class="skeleton-card" style="display:flex;gap:10px"><span class="skeleton-line" style="width:80px"></span><span class="skeleton-line medium"></span></li><li class="skeleton-card" style="display:flex;gap:10px"><span class="skeleton-line" style="width:80px"></span><span class="skeleton-line long"></span></li></ul>
 <div id="pagination" class="pagination"></div></main>
 <nav class="navbar"><div class="nav-inner"><div class="nav-links">
@@ -21,5 +21,5 @@
 <p class="footer-copy">(c) 2026 KAI BLOG</p></footer>
 <button id="scroll-top-btn" class="scroll-top-btn">^</button>
 <script src="js/scene.js"></script><script src="js/pagination.js"></script><script src="js/main.js"></script>
-<script>fetch("posts/posts.json").then(r=>r.json()).then(posts=>{posts.sort((a,b)=>{if(a.date!==b.date)return b.date.localeCompare(a.date);return b.id-a.id});const list=document.getElementById("archive-list"),pc=document.getElementById("pagination");function renderList(pageItems){list.innerHTML=pageItems.map(p=>"<li><div class="archive-item"><span class="archive-date">"+p.date+"</span><span>|</span><a class="archive-link" href=""+p.filePath+"">"+p.title+"</a></div></li>").join("")}if(posts.length===0)list.innerHTML="<li style="text-align:center;color:var(--ink-light);padding:2rem;font-family:var(--font-pixel)">~ No quests yet ~</li>";const pg=new Pagination(posts,20,pc,renderList);pg.goTo(1)}).catch(()=>{document.getElementById("archive-list").innerHTML="<li style="text-align:center;color:var(--ink-light);font-family:var(--font-pixel)">~ Load failed ~</li>"})</script>
+<script>fetch("posts/posts.json").then(r=>r.json()).then(posts=>{posts.sort((a,b)=>{if(a.date!==b.date)return b.date.localeCompare(a.date);return b.id-a.id});const list=document.getElementById("archive-list"),pc=document.getElementById("pagination");function renderList(pageItems){list.innerHTML=pageItems.map(p=>"<li><div class="archive-item"><span class="archive-date">"+p.date+"</span><span>|</span><a class="archive-link" href=""+p.filePath+"">"+p.title+"</a></div></li>").join("")}if(posts.length===0)list.innerHTML="<li style="text-align:center;color:var(--ink-light);padding:2rem;font-family:var(--font-pixel)">~ No posts yet ~</li>";const pg=new Pagination(posts,20,pc,renderList);pg.goTo(1)}).catch(()=>{document.getElementById("archive-list").innerHTML="<li style="text-align:center;color:var(--ink-light);font-family:var(--font-pixel)">~ Load failed ~</li>"})</script>
 </body></html>
