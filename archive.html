@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <canvas id="particle-canvas"></canvas>
+  <div id="reading-progress"></div>
+  <div id="custom-cursor"></div>
+
   <nav class="navbar">
     <div class="nav-inner">
       <a class="nav-brand" href="index.html">Kai的博客</a>
@@ -22,14 +26,28 @@
 
   <main class="archive-container">
     <h1 class="page-title">📚 文章归档</h1>
-    <ul id="archive-list" class="archive-list"></ul>
+    <ul id="archive-list" class="archive-list">
+      <li class="skeleton-archive-item"><span class="skeleton-line" style="width:100px"></span><span class="skeleton-line" style="width:60%"></span></li>
+      <li class="skeleton-archive-item"><span class="skeleton-line" style="width:100px"></span><span class="skeleton-line" style="width:70%"></span></li>
+      <li class="skeleton-archive-item"><span class="skeleton-line" style="width:100px"></span><span class="skeleton-line" style="width:55%"></span></li>
+    </ul>
     <div id="pagination" class="pagination"></div>
   </main>
 
-  <!-- 在此插入 counter.dev 脚本 -->
-
   <footer class="site-footer">
-    <p>&copy; 2026 我的博客 | Powered by GitHub Pages</p>
+    <div class="footer-social">
+      <a href="https://github.com/Ricardo-Kai-Zheng" target="_blank" rel="noopener" title="GitHub">🐙</a>
+      <a href="mailto:your@email.com" title="Email">📧</a>
+      <a href="#" title="RSS">📡</a>
+    </div>
+    <div class="footer-nav">
+      <a href="index.html">首页</a>
+      <a href="archive.html">文章</a>
+      <a href="projects.html">项目</a>
+      <a href="about.html">关于</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Kai的博客 | Powered by GitHub Pages</p>
+    <!-- 在此插入 counter.dev 脚本 -->
   </footer>
 
   <button id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部">↑</button>
@@ -37,11 +55,9 @@
   <script src="js/pagination.js"></script>
   <script src="js/main.js"></script>
   <script>
-    // 归档页：加载 posts.json 并渲染标题列表分页
     fetch('posts/posts.json')
       .then(res => res.json())
       .then(posts => {
-        // 按日期倒序排列
         posts.sort((a, b) => {
           if (a.date !== b.date) return b.date.localeCompare(a.date);
           return b.id - a.id;
@@ -60,6 +76,10 @@
               </div>
             </li>
           `).join('');
+        }
+
+        if (posts.length === 0) {
+          list.innerHTML = '<li style="text-align:center;color:var(--text-muted);padding:2rem;">还没有文章，敬请期待 ✨</li>';
         }
 
         const pg = new Pagination(posts, 20, paginationContainer, renderList);

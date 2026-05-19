@@ -333,6 +333,13 @@ GitHub Pages 会自动重新部署（通常 1 分钟内生效）。
 
 ## 六、如何修改样式
 
+### 当前配色方案（暖调人文）
+
+浅色模式：奶油暖白底 `#fef9f0 → #f5ebe0`，强调色琥珀 `#d97706`
+暗色模式：浓缩咖啡底 `#1a120b → #2d1f14`，强调色金赭 `#f59e0b`
+
+所有颜色通过 CSS 变量控制，位于 `css/style.css` 的 `:root`（浅色）、`[data-theme="dark"]`（暗色）和 `@media (prefers-color-scheme: dark)`（系统自动）三处。
+
 ### 修改毛玻璃模糊度
 
 编辑 `css/style.css`，找到 `:root` 和 `[data-theme="dark"]` 中的：
@@ -441,5 +448,5 @@ localStorage.getItem('blog-theme')  // 应返回 'dark' 或 'light'
 
 ---
 
-> **最后更新**：2026-05-19
-> **版本**：v1.0
+> **最后更新：2026-05-19（暖调人文视觉改造 v2.0）
+> **版本：v2.0

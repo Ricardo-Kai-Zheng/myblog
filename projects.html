@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <canvas id="particle-canvas"></canvas>
+  <div id="reading-progress"></div>
+  <div id="custom-cursor"></div>
+
   <nav class="navbar">
     <div class="nav-inner">
       <a class="nav-brand" href="index.html">Kai的博客</a>
@@ -15,7 +19,7 @@
         <a href="archive.html">文章</a>
         <a href="projects.html">项目</a>
         <a href="about.html">关于</a>
-        <button id="theme-toggle" class="theme-toggle" aria-label="切换暗色模式">🌙</button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="切换暗色模式">☀️</button>
       </div>
     </div>
   </nav>
@@ -24,7 +28,6 @@
     <h1 class="page-title">🎮 小游戏 & 小软件</h1>
     <div class="card-grid projects-grid">
 
-      <!-- 窃梦之钟 -->
       <article class="card project-card">
         <div class="project-placeholder">🕰️</div>
         <div class="card-body">
@@ -37,14 +40,23 @@
     </div>
   </main>
 
-  <!-- 在此插入 counter.dev 脚本 -->
-
   <footer class="site-footer">
-    <p>&copy; 2026 Kai的博客 | Powered by GitHub Pages</p>
+    <div class="footer-social">
+      <a href="https://github.com/Ricardo-Kai-Zheng" target="_blank" rel="noopener" title="GitHub">🐙</a>
+      <a href="mailto:your@email.com" title="Email">📧</a>
+      <a href="#" title="RSS">📡</a>
+    </div>
+    <div class="footer-nav">
+      <a href="index.html">首页</a>
+      <a href="archive.html">文章</a>
+      <a href="projects.html">项目</a>
+      <a href="about.html">关于</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Kai的博客 | Powered by GitHub Pages</p>
+    <!-- 在此插入 counter.dev 脚本 -->
   </footer>
 
   <button id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部">↑</button>
-
   <script src="js/main.js"></script>
 </body>
 </html>

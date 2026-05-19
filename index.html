@@ -7,6 +7,16 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- 粒子背景 -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- 阅读进度条 -->
+  <div id="reading-progress"></div>
+
+  <!-- 自定义光标 -->
+  <div id="custom-cursor"></div>
+
+  <!-- 导航栏 -->
   <nav class="navbar">
     <div class="nav-inner">
       <a class="nav-brand" href="index.html">Kai的博客</a>
@@ -20,16 +30,47 @@
     </div>
   </nav>
 
+  <!-- Hero 首屏区 -->
+  <section class="hero">
+    <div class="hero-avatar">👤</div>
+    <h1 class="hero-name">Kai</h1>
+    <p class="hero-tagline">
+      <span id="typewriter"></span><span class="cursor-blink"></span>
+    </p>
+    <div class="hero-social">
+      <a href="https://github.com/Ricardo-Kai-Zheng" target="_blank" rel="noopener" title="GitHub">🐙</a>
+      <a href="mailto:your@email.com" title="Email">📧</a>
+      <a href="#" title="RSS">📡</a>
+    </div>
+  </section>
+
+  <!-- 文章卡片区 -->
   <main class="container">
-    <h1 class="page-title">📄 最新文章</h1>
-    <div id="card-grid" class="card-grid"></div>
+    <h2 class="page-title">📄 最新文章</h2>
+    <div id="card-grid" class="card-grid">
+      <!-- 骨架屏占位（加载后替换） -->
+      <div class="skeleton-card"><div class="skeleton-line title"></div><div class="skeleton-line date"></div><div class="skeleton-line long"></div><div class="skeleton-line medium"></div><div class="skeleton-line short"></div></div>
+      <div class="skeleton-card"><div class="skeleton-line title"></div><div class="skeleton-line date"></div><div class="skeleton-line long"></div><div class="skeleton-line medium"></div><div class="skeleton-line short"></div></div>
+      <div class="skeleton-card"><div class="skeleton-line title"></div><div class="skeleton-line date"></div><div class="skeleton-line long"></div><div class="skeleton-line medium"></div><div class="skeleton-line short"></div></div>
+    </div>
     <div id="pagination" class="pagination"></div>
   </main>
 
-  <!-- 在此插入 counter.dev 脚本 -->
-
+  <!-- 页脚 -->
   <footer class="site-footer">
-    <p>&copy; 2026 我的博客 | Powered by GitHub Pages</p>
+    <div class="footer-social">
+      <a href="https://github.com/Ricardo-Kai-Zheng" target="_blank" rel="noopener" title="GitHub">🐙</a>
+      <a href="mailto:your@email.com" title="Email">📧</a>
+      <a href="#" title="RSS">📡</a>
+    </div>
+    <div class="footer-nav">
+      <a href="index.html">首页</a>
+      <a href="archive.html">文章</a>
+      <a href="projects.html">项目</a>
+      <a href="about.html">关于</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Kai的博客 | Powered by GitHub Pages</p>
+    <!-- 在此插入 counter.dev 脚本 -->
   </footer>
 
   <button id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部">↑</button>
@@ -37,48 +78,87 @@
   <script src="js/pagination.js"></script>
   <script src="js/main.js"></script>
   <script>
-    // 首页：加载 posts.json 并渲染卡片分页
+    // 打字机动效
+    (function () {
+      const tagline = '读书、编码、记录生活里的光。';
+      const el = document.getElementById('typewriter');
+      let i = 0;
+      function type() {
+        if (i < tagline.length) {
+          el.textContent += tagline.charAt(i);
+          i++;
+          setTimeout(type, 80 + Math.random() * 50);
+        }
+      }
+      setTimeout(type, 400);
+    })();
+
+    // 加载 posts.json 并渲染卡片分页
     fetch('posts/posts.json')
       .then(res => res.json())
       .then(posts => {
-        // 按日期倒序排列（最新在前）
+        const grid = document.getElementById('card-grid');
+        const paginationContainer = document.getElementById('pagination');
+
+        // 按日期倒序
         posts.sort((a, b) => {
           if (a.date !== b.date) return b.date.localeCompare(a.date);
           return b.id - a.id;
         });
 
-        const grid = document.getElementById('card-grid');
-        const paginationContainer = document.getElementById('pagination');
-
         function renderCards(pageItems) {
           grid.innerHTML = pageItems.map(post => {
-            // 截取摘要前 100 个字符
             const summary = post.summary.length > 100
               ? post.summary.substring(0, 100) + '...'
               : post.summary;
-
             return `
               <article class="card">
                 <div class="card-header">
                   <span class="card-icon">📄</span>
-                  <h2 class="card-title">
+                  <h3 class="card-title">
                     <a href="${post.filePath}">${post.title}</a>
-                  </h2>
+                  </h3>
                 </div>
                 <div class="card-date">📅 ${post.date}</div>
                 <p class="card-summary">${summary}</p>
               </article>
             `;
           }).join('');
+
+          // 重新绑定 3D tilt 到新渲染的卡片
+          if (!window.matchMedia('(pointer: coarse)').matches) {
+            grid.querySelectorAll('.card').forEach(function (card) {
+              card.addEventListener('mousemove', function (e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const cx = rect.width / 2;
+                const cy = rect.height / 2;
+                card.style.setProperty('--mouse-x', (x / rect.width * 100) + '%');
+                card.style.setProperty('--mouse-y', (y / rect.height * 100) + '%');
+                card.style.transform = 'perspective(800px) rotateX(' + ((y - cy) / cy * -7) + 'deg) rotateY(' + ((x - cx) / cx * 7) + 'deg) scale3d(1.02,1.02,1.02)';
+                card.classList.add('tilt-active');
+              });
+              card.addEventListener('mouseleave', function () {
+                card.style.transform = '';
+                card.classList.remove('tilt-active');
+              });
+            });
+          }
         }
 
         const pg = new Pagination(posts, 10, paginationContainer, renderCards);
         pg.goTo(1);
+
+        // 文章数为 0 时显示提示
+        if (posts.length === 0) {
+          grid.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:2rem;">还没有文章，敬请期待 ✨</p>';
+        }
       })
       .catch(err => {
         console.error('加载文章列表失败：', err);
         document.getElementById('card-grid').innerHTML =
-          '<p style="text-align:center;color:var(--text-muted);">文章加载失败，请稍后重试。</p>';
+          '<p style="text-align:center;color:var(--text-muted);padding:2rem;">文章加载失败，请稍后重试。</p>';
       });
   </script>
 </body>
