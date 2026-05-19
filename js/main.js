@@ -6,7 +6,7 @@
 window.drawIcon = function(canvas, iconType){
   const ctx = canvas.getContext('2d');
   const w = canvas.width, h = canvas.height;
-  const P = 8;
+  const P = 5;
   ctx.clearRect(0,0,w,h);
   ctx.imageSmoothingEnabled = false;
 
@@ -54,17 +54,18 @@ window.drawIcon = function(canvas, iconType){
       px(3,0,seal);
     },
     sun: function(){
-      const sun='#FFD700', ray='#FFA500';
-      px(1,0,ray);px(3,0,ray);px(0,1,ray);px(4,1,ray);
-      px(1,1,sun);px(2,1,sun);px(3,1,sun);
-      px(1,2,sun);px(2,2,sun);px(3,2,sun);
-      px(1,3,sun);px(2,3,sun);px(3,3,sun);
-      px(0,2,ray);px(4,2,ray);px(1,4,ray);px(3,4,ray);
+      const S='#FFD700', R='#FFA500';
+      px(1,0,R);px(3,0,R);
+      px(0,1,R);px(1,1,S);px(2,1,S);px(3,1,S);px(4,1,R);
+      px(1,2,S);px(2,2,S);px(3,2,S);
+      px(0,3,R);px(1,3,S);px(2,3,S);px(3,3,S);px(4,3,R);
+      px(1,4,R);px(3,4,R);
     },
     moon: function(){
-      const moon='#F5F5DC', sky='#1A1A3E';
-      px(1,1,moon);px(2,1,moon);px(1,2,moon);px(2,2,moon);
-      px(3,2,sky);px(2,3,moon);px(3,3,moon);px(1,0,sky);
+      const C='#F5F5DC';
+      px(1,1,C);px(2,1,C);px(3,1,C);
+      px(3,2,C);px(4,2,C);
+      px(1,3,C);px(2,3,C);px(3,3,C);
     },
     github: function(){
       const bg='#333', fg='#FFF';

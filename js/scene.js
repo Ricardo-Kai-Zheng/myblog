@@ -1,6 +1,6 @@
 
 /**
- * scene.js â€” Pixel Art Landscape Engine
+ * scene.js â€?Pixel Art Landscape Engine
  * Minecraft x Terraria x Stardew Valley style
  */
 (function(){
@@ -10,7 +10,7 @@ const canvas = document.getElementById('scene-canvas');
 if(!canvas) return;
 
 const ctx = canvas.getContext('2d');
-const PX = 8;
+const PX = 5;
 
 // === State ===
 let W, H, scrollY = 0, targetScroll = 0;
