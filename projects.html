@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>项目展示 —— 个人博客</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">📝 我的博客</a>
+      <div class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="archive.html">文章</a>
+        <a href="projects.html">项目</a>
+        <a href="about.html">关于</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="切换暗色模式">🌙</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1 class="page-title">🎮 小游戏 & 小软件</h1>
+    <div class="card-grid projects-grid">
+      <!-- 项目 1：猜数字游戏 -->
+      <article class="card project-card">
+        <div class="project-placeholder">🎮</div>
+        <div class="card-body">
+          <h2 class="card-title">猜数字游戏（占位）</h2>
+          <p class="card-desc">一个经典的猜数字小游戏，系统随机生成一个 1-100 的数字，玩家通过提示逐步缩小范围，直到猜中为止。</p>
+          <a class="btn-demo" href="#">查看演示</a>
+        </div>
+      </article>
+
+      <!-- 项目 2：待办清单工具 -->
+      <article class="card project-card">
+        <div class="project-placeholder">✅</div>
+        <div class="card-body">
+          <h2 class="card-title">待办清单工具（占位）</h2>
+          <p class="card-desc">轻量级待办事项管理工具，支持添加、完成、删除任务，数据保存在浏览器本地存储中，无需注册即可使用。</p>
+          <a class="btn-demo" href="#">查看演示</a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- 在此插入 counter.dev 脚本 -->
+
+  <footer class="site-footer">
+    <p>&copy; 2026 我的博客 | Powered by GitHub Pages</p>
+  </footer>
+
+  <button id="scroll-top-btn" class="scroll-top-btn" aria-label="回到顶部">↑</button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

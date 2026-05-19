@@ -1,0 +1,629 @@
+﻿/* ============================================================
+   个人博客 —— 全局样式
+   包含：CSS 变量、浅色/暗色主题、毛玻璃卡片、导航栏、
+   响应式布局、分页控件、文章排版
+   ============================================================ */
+
+/* ---------- CSS 变量：浅色主题（默认） ---------- */
+:root {
+  --bg-start: #f0f2f5;
+  --bg-end: #e8ebf0;
+  --bg-page: #f0f2f5;
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --card-border: 1px solid rgba(255, 255, 255, 0.4);
+  --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --card-hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --card-blur: blur(10px);
+  --nav-bg: rgba(255, 255, 255, 0.7);
+  --nav-border: 1px solid rgba(255, 255, 255, 0.3);
+  --nav-blur: blur(10px);
+  --text-primary: #1a1a2e;
+  --text-secondary: #555;
+  --text-muted: #888;
+  --link-color: #2563eb;
+  --link-hover: #1d4ed8;
+  --accent: #2563eb;
+  --accent-light: #dbeafe;
+  --accent-text: #fff;
+  --page-active-bg: #2563eb;
+  --page-active-text: #fff;
+  --page-hover-bg: #e0e7ff;
+  --border-light: rgba(0, 0, 0, 0.08);
+  --radius-card: 1rem;
+  --radius-btn: 0.5rem;
+  --radius-pill: 2rem;
+  --gap-card: 1.5rem;
+  --transition-speed: 0.3s;
+}
+
+[data-theme="dark"] {
+  --bg-start: #1a1a2e;
+  --bg-end: #16213e;
+  --bg-page: #1a1a2e;
+  --card-bg: rgba(0, 0, 0, 0.7);
+  --card-border: 1px solid rgba(255, 255, 255, 0.1);
+  --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  --card-hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  --nav-bg: rgba(20, 20, 40, 0.75);
+  --nav-border: 1px solid rgba(255, 255, 255, 0.08);
+  --text-primary: #e0e0e0;
+  --text-secondary: #aaa;
+  --text-muted: #777;
+  --link-color: #60a5fa;
+  --link-hover: #93bbfd;
+  --accent: #3b82f6;
+  --accent-light: #1e3a5f;
+  --accent-text: #fff;
+  --page-active-bg: #3b82f6;
+  --page-active-text: #fff;
+  --page-hover-bg: #1e3a5f;
+  --border-light: rgba(255, 255, 255, 0.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-start: #1a1a2e;
+    --bg-end: #16213e;
+    --bg-page: #1a1a2e;
+    --card-bg: rgba(0, 0, 0, 0.7);
+    --card-border: 1px solid rgba(255, 255, 255, 0.1);
+    --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+    --card-hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    --nav-bg: rgba(20, 20, 40, 0.75);
+    --nav-border: 1px solid rgba(255, 255, 255, 0.08);
+    --text-primary: #e0e0e0;
+    --text-secondary: #aaa;
+    --text-muted: #777;
+    --link-color: #60a5fa;
+    --link-hover: #93bbfd;
+    --accent: #3b82f6;
+    --accent-light: #1e3a5f;
+    --accent-text: #fff;
+    --page-active-bg: #3b82f6;
+    --page-active-text: #fff;
+    --page-hover-bg: #1e3a5f;
+    --border-light: rgba(255, 255, 255, 0.08);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  min-height: 100vh;
+  line-height: 1.6;
+  padding-top: 72px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---------- 导航栏 ---------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--nav-bg);
+  backdrop-filter: var(--nav-blur);
+  -webkit-backdrop-filter: var(--nav-blur);
+  border-bottom: var(--nav-border);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  flex-wrap: wrap;
+}
+
+.nav-brand {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.5rem;
+  line-height: 1;
+  transition: background 0.2s;
+  color: var(--text-primary);
+}
+
+.theme-toggle:hover {
+  background: var(--accent-light);
+}
+
+/* ---------- 主内容容器 ---------- */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.article-container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.archive-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+/* ---------- 毛玻璃卡片 ---------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--card-bg);
+  backdrop-filter: var(--card-blur);
+  -webkit-backdrop-filter: var(--card-blur);
+  border: var(--card-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.card-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.card-title a:hover {
+  color: var(--accent);
+}
+
+.card-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.card-summary {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex-grow: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* ---------- 项目卡片 ---------- */
+.project-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background: var(--border-light);
+  border-radius: 1rem 1rem 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin: -1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.project-card .card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-card .card-title {
+  margin-bottom: 0.5rem;
+}
+
+.project-card .card-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.btn-demo {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  background: var(--accent);
+  color: var(--accent-text);
+  border-radius: 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  transition: background 0.2s, transform 0.15s;
+  align-self: flex-start;
+}
+
+.btn-demo:hover {
+  background: var(--link-hover);
+  color: #fff;
+  transform: scale(1.03);
+}
+
+/* ---------- 归档列表 ---------- */
+.archive-list {
+  list-style: none;
+}
+
+.archive-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.archive-list li:last-child {
+  border-bottom: none;
+}
+
+.archive-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-size: 1rem;
+}
+
+.archive-date {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.archive-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.archive-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* ---------- 文章页排版 ---------- */
+.article-header {
+  margin-bottom: 2rem;
+}
+
+.article-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.article-meta {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.article-body {
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.article-body h2 {
+  font-size: 1.5rem;
+  margin: 2rem 0 1rem;
+}
+
+.article-body h3 {
+  font-size: 1.25rem;
+  margin: 1.75rem 0 0.75rem;
+}
+
+.article-body p {
+  margin-bottom: 1.5em;
+}
+
+.article-body blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+  color: var(--text-secondary);
+  margin: 1.5em 0;
+  font-style: italic;
+}
+
+.article-body ul,
+.article-body ol {
+  margin: 1em 0 1.5em 1.5em;
+}
+
+.article-body li {
+  margin-bottom: 0.5em;
+}
+
+.article-body hr {
+  border: none;
+  border-top: 1px solid var(--border-light);
+  margin: 2rem 0;
+}
+
+.article-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-back {
+  color: var(--accent);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+}
+
+.btn-back:hover {
+  text-decoration: underline;
+}
+
+/* ---------- 回到顶部按钮 ---------- */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 900;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: var(--card-border);
+  background: var(--card-bg);
+  backdrop-filter: var(--card-blur);
+  -webkit-backdrop-filter: var(--card-blur);
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s, visibility 0.3s, transform 0.3s, background 0.3s;
+  box-shadow: var(--card-shadow);
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+  background: var(--accent-light);
+}
+
+/* ---------- 分页控件 ---------- */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.pagination button,
+.pagination .page-num {
+  min-width: 38px;
+  height: 38px;
+  border: 1px solid var(--border-light);
+  border-radius: 0.5rem;
+  background: var(--card-bg);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  padding: 0 0.7rem;
+}
+
+.pagination button:hover:not(:disabled),
+.pagination .page-num:hover {
+  background: var(--page-hover-bg);
+  border-color: var(--accent);
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination .page-num.active {
+  background: var(--page-active-bg);
+  color: var(--page-active-text);
+  border-color: var(--page-active-bg);
+  font-weight: 600;
+}
+
+.pagination .page-ellipsis {
+  min-width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ---------- 关于页 ---------- */
+.about-content {
+  max-width: 600px;
+}
+
+.about-content p {
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.about-label {
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-secondary);
+}
+
+/* ---------- 页脚 ---------- */
+.site-footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border-light);
+}
+
+/* ---------- 响应式布局 ---------- */
+@media (min-width: 768px) {
+  .card-grid,
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1400px) {
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .card {
+    padding: 1rem;
+  }
+  .nav-inner {
+    padding: 0 1rem;
+  }
+  .container,
+  .article-container {
+    padding: 1.5rem 1rem 2rem;
+  }
+  .scroll-top-btn {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  .archive-item {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .page-title {
+    font-size: 1.5rem;
+  }
+}
