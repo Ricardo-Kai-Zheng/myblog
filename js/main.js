@@ -89,6 +89,7 @@ window.drawIcon = function(canvas, iconType){
 // === Draw all nav icons on load ===
 document.addEventListener('DOMContentLoaded', ()=>{
   document.querySelectorAll('.nav-icon').forEach(c=>drawIcon(c, c.dataset.icon));
+  var tbtn=document.getElementById('theme-toggle');if(tbtn){var tc=tbtn.querySelector('canvas');if(tc)drawIcon(tc,getTheme()==='dark'?'moon':'sun');}
 });
 
 // === Theme Toggle ===
@@ -112,7 +113,7 @@ function applyTheme(theme){
   html.style.setProperty('--parchment', theme==='dark'?'#D4C8A8':'#F5E6C8');
   html.style.setProperty('--ink', theme==='dark'?'#D4C8A8':'#3D2B1F');
   html.style.setProperty('--ink-light', theme==='dark'?'#A09080':'#5C4A3A');
-  if(toggleBtn) toggleBtn.textContent = theme==='dark'?'[X]':'[O]';
+  if(toggleBtn){var tc=toggleBtn.querySelector('canvas');if(tc)drawIcon(tc,theme==='dark'?'moon':'sun');}
 }
 
 function setTheme(theme){localStorage.setItem(themeKey,theme);applyTheme(theme)}
