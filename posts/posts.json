@@ -1,1 +1,9 @@
-﻿[]
+﻿[
+  {
+    "id": 1,
+    "title": "FRIST DAY",
+    "date": "2026-05-19",
+    "summary": "Today is the first day of my blog. Everything starts here.",
+    "filePath": "posts/2026-05-19-1.html"
+  }
+]
