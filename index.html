@@ -82,9 +82,9 @@
     })();
 
     // Load posts
-    fetch('posts/posts.json')
-      .then(res=>res.json())
-      .then(posts=>{
+    <script>var POSTS_DATA=[{"id": 1, "title": "FRIST DAY", "date": "2026-05-20", "summary": "Today is the first day of my blog. Everything starts here.", "filePath": "posts/2026-05-20-1.html"}];</script><script>
+      var posts=POSTS_DATA;
+      {
         const grid=document.getElementById('card-grid');
         const paginationContainer=document.getElementById('pagination');
         posts.sort((a,b)=>{if(a.date!==b.date)return b.date.localeCompare(a.date);return b.id-a.id});
@@ -92,7 +92,7 @@
         function renderCards(pageItems){
           grid.innerHTML=pageItems.map(post=>{
             const summary=post.summary&&post.summary.length>100?post.summary.substring(0,100)+'...':post.summary||'';
-            return '<article class="card"><div class="card-header"><canvas class="card-icon" width="43" height="43" data-icon="paper"></canvas><h3 class="card-title"><a href="'+post.filePath+'">'+post.title+'</a></h3></div><div class="card-date">'+post.date+'</div><p class="card-summary">'+summary+'</p></article>';
+            return '<a href="'+post.filePath+'" style="text-decoration:none;color:inherit;display:block"><article class="card"><div class="card-header"><canvas class="card-icon" width="43" height="43" data-icon="paper"></canvas><h3 class="card-title">'+post.title+'</h3></div><div class="card-date">'+post.date+'</div><p class="card-summary">'+summary+'</p></article></a>';
           }).join('');
           // draw card icons
           document.querySelectorAll('.card-icon').forEach(c=>drawIcon(c,c.dataset.icon));
