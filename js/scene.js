@@ -10,7 +10,7 @@ const canvas = document.getElementById('scene-canvas');
 if(!canvas) return;
 
 const ctx = canvas.getContext('2d');
-const PX = 4;
+const PX = 8;
 
 // === State ===
 let W, H, scrollY = 0, targetScroll = 0;
@@ -243,7 +243,7 @@ function initParticles(){
       vx: (Math.random()-0.5)*0.3,
       vy: 0.2 + Math.random()*0.4,
       life: Math.random(),
-      size: PX*(1+Math.floor(Math.random()*2)),
+      size: PX*(2+Math.floor(Math.random()*4)),
       type: Math.random() < 0.6 ? 'leaf' : 'firefly',
     });
   }

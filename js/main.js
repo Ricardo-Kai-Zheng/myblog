@@ -6,7 +6,7 @@
 window.drawIcon = function(canvas, iconType){
   const ctx = canvas.getContext('2d');
   const w = canvas.width, h = canvas.height;
-  const P = 4;
+  const P = 8;
   ctx.clearRect(0,0,w,h);
   ctx.imageSmoothingEnabled = false;
 

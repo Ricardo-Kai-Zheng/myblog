@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -22,22 +22,18 @@
 
   <!-- Item Bar Nav -->
   <nav class="navbar">
-    <div class="nav-inner">
-      <a class="nav-brand" href="index.html" title="Home">
-        <canvas class="nav-icon" width="24" height="24" data-icon="home"></canvas>
-      </a>
-      <div class="nav-links">
+    <div class="nav-inner"><div class="nav-links">
         <a href="index.html" title="Home">
-          <canvas class="nav-icon" width="24" height="24" data-icon="home"></canvas>
+          <canvas class="nav-icon" width="48" height="48" data-icon="home"></canvas>
         </a>
         <a href="archive.html" title="Posts">
-          <canvas class="nav-icon" width="24" height="24" data-icon="book"></canvas>
+          <canvas class="nav-icon" width="48" height="48" data-icon="book"></canvas>
         </a>
         <a href="projects.html" title="Projects">
-          <canvas class="nav-icon" width="24" height="24" data-icon="pickaxe"></canvas>
+          <canvas class="nav-icon" width="48" height="48" data-icon="pickaxe"></canvas>
         </a>
         <a href="about.html" title="About">
-          <canvas class="nav-icon" width="24" height="24" data-icon="player"></canvas>
+          <canvas class="nav-icon" width="48" height="48" data-icon="player"></canvas>
         </a>
         <button id="theme-toggle" class="theme-toggle" aria-label="toggle day/night">[O]</button>
       </div>
@@ -80,7 +76,7 @@
   <script>
     // Typewriter
     (function(){
-      const tagline = 'reading, coding, capturing the light.';
+      const tagline = 'Life is for rent';
       const el = document.getElementById('typewriter');
       let i=0;
       function type(){
@@ -100,7 +96,7 @@
         function renderCards(pageItems){
           grid.innerHTML=pageItems.map(post=>{
             const summary=post.summary&&post.summary.length>100?post.summary.substring(0,100)+'...':post.summary||'';
-            return '<article class="card"><div class="card-header"><canvas class="card-icon" width="32" height="32" data-icon="paper"></canvas><h3 class="card-title"><a href="'+post.filePath+'">'+post.title+'</a></h3></div><div class="card-date">'+post.date+'</div><p class="card-summary">'+summary+'</p></article>';
+            return '<article class="card"><div class="card-header"><canvas class="card-icon" width="64" height="64" data-icon="paper"></canvas><h3 class="card-title"><a href="'+post.filePath+'">'+post.title+'</a></h3></div><div class="card-date">'+post.date+'</div><p class="card-summary">'+summary+'</p></article>';
           }).join('');
           // draw card icons
           document.querySelectorAll('.card-icon').forEach(c=>drawIcon(c,c.dataset.icon));
