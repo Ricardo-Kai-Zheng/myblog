@@ -81,28 +81,28 @@
       setTimeout(type,400);
     })();
 
-    // Load posts
-    fetch('posts/posts.json')
-      .then(res=>res.json())
-      .then(posts=>{
-        const grid=document.getElementById('card-grid');
-        const paginationContainer=document.getElementById('pagination');
-        posts.sort((a,b)=>{if(a.date!==b.date)return b.date.localeCompare(a.date);return b.id-a.id});
+<!-- POSTS_DATA_START -->
+<script>window.__POSTS__=[{"id":1,"title":"FRIST DAY","date":"2026-05-20","summary":"Today is the first day of my blog. Everything starts here.","filePath":"posts/2026-05-20-1.html"}];</script>
+<!-- POSTS_DATA_END -->
+    // Load posts from embedded data
+    (function(){
+      var posts = window.__POSTS__;
+      const grid=document.getElementById('card-grid');
+      const paginationContainer=document.getElementById('pagination');
+      posts.sort((a,b)=>{if(a.date!==b.date)return b.date.localeCompare(a.date);return b.id-a.id});
 
-        function renderCards(pageItems){
-          grid.innerHTML=pageItems.map(post=>{
-            const summary=post.summary&&post.summary.length>100?post.summary.substring(0,100)+'...':post.summary||'';
-            return '<article class="card"><div class="card-header"><canvas class="card-icon" width="43" height="43" data-icon="paper"></canvas><h3 class="card-title"><a href="'+post.filePath+'">'+post.title+'</a></h3></div><div class="card-date">'+post.date+'</div><p class="card-summary">'+summary+'</p></article>';
-          }).join('');
-          // draw card icons
-          document.querySelectorAll('.card-icon').forEach(c=>drawIcon(c,c.dataset.icon));
-        }
+      function renderCards(pageItems){
+        grid.innerHTML=pageItems.map(post=>{
+          const summary=post.summary&&post.summary.length>100?post.summary.substring(0,100)+'...':post.summary||'';
+          return '<article class="card"><div class="card-header"><canvas class="card-icon" width="43" height="43" data-icon="paper"></canvas><h3 class="card-title"><a href="'+post.filePath+'">'+post.title+'</a></h3></div><div class="card-date">'+post.date+'</div><p class="card-summary">'+summary+'</p></article>';
+        }).join('');
+        document.querySelectorAll('.card-icon').forEach(c=>drawIcon(c,c.dataset.icon));
+      }
 
-        const pg=new Pagination(posts,10,paginationContainer,renderCards);
-        pg.goTo(1);
-        if(posts.length===0){grid.innerHTML='<p style="text-align:center;color:var(--ink-light);padding:2rem;font-family:var(--font-pixel)">~ No posts yet ~</p>'}
-      })
-      .catch(err=>{console.error(err);document.getElementById('card-grid').innerHTML='<p style="text-align:center;color:var(--ink-light);padding:2rem;font-family:var(--font-pixel)">~ Load failed ~</p>'});
+      const pg=new Pagination(posts,10,paginationContainer,renderCards);
+      pg.goTo(1);
+      if(posts.length===0){grid.innerHTML='<p style="text-align:center;color:var(--ink-light);padding:2rem;font-family:var(--font-pixel)">~ No posts yet ~</p>'}
+    })();
   </script>
 </body>
 </html>
