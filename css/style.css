@@ -151,7 +151,7 @@ a{color:var(--ink);text-decoration:none}a:hover{color:var(--gold-dark)}
 .btn-demo:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,0.3)}
 
 /* ===== About ===== */
-.about-content{max-width:700px;margin:0 auto}
+.about-content{max-width:900px;margin:0 auto}
 
 .about-card{background:linear-gradient(180deg,var(--stone) 0%,var(--stone-dark) 100%);
   border:8px solid #3A3A3A;padding:72px 64px;
@@ -160,7 +160,7 @@ a{color:var(--ink);text-decoration:none}a:hover{color:var(--gold-dark)}
 .about-card .info-row{display:flex;align-items:baseline;padding:14px 0;
   border-bottom:2px solid rgba(255,255,255,0.1);font-size:2.4rem;gap:22px}
 
-.about-label{font-family:var(--font-pixel);font-size:2.2rem;color:var(--gold);width:134px;flex-shrink:0}
+.about-label{font-family:var(--font-pixel);font-size:2.2rem;color:var(--gold);width:160px;flex-shrink:0}
 
 .about-card p{font-size:2.4rem;line-height:1.8;color:#CCC}
 
