@@ -28,7 +28,7 @@
   function applyTheme(theme) {
     html.setAttribute('data-theme', theme);
     if (toggleBtn) {
-      toggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+      toggleBtn.textContent = theme === 'dark' ? '🌙' : '☀️';
     }
   }
 
