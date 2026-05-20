@@ -127,7 +127,7 @@ a{color:var(--ink);text-decoration:none}a:hover{color:var(--gold-dark)}
 .archive-date{font-family:var(--font-pixel);font-size:1.8rem;color:var(--ink-light);
   padding:4px 16px;border:2px solid var(--wood-dark);background:rgba(255,255,255,0.3)}
 
-.archive-link{font-size:2.6rem;color:var(--ink);font-weight:700}
+.archive-link{font-size:2.6rem;color:#1a1a1a;font-weight:700}
 
 /* ===== Projects ===== */
 .projects-grid{display:grid;grid-template-columns:1fr;gap:40px}
