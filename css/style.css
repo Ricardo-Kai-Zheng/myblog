@@ -114,7 +114,7 @@ a{color:var(--ink);text-decoration:none}a:hover{color:var(--gold-dark)}
 /* ===== Archive ===== */
 .archive-list{list-style:none;display:flex;flex-direction:column;gap:8px}
 
-.archive-list li{background:linear-gradient(180deg,var(--parchment) 0%,var(--parchment-dark) 100%);
+.archive-list li{display:flex;align-items:baseline;gap:0;background:linear-gradient(180deg,var(--parchment) 0%,var(--parchment-dark) 100%);
   border:4px solid var(--wood-dark);padding:32px 40px;box-shadow:4px 6px 0 rgba(0,0,0,0.2);
   transition:transform .1s;position:relative}
 
