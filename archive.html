@@ -32,7 +32,7 @@
 
         function renderList(pageItems){
           list.innerHTML=pageItems.map(p=>{
-            return '<li><div class="archive-item"><span class="archive-date">'+p.date+'</span><span>|</span><a class="archive-link" href="'+p.filePath+'">'+p.title+'</a></div></li>';
+            return '<li><div class="archive-item"><a class="archive-link" href="'+p.filePath+'">'+p.title+'</a><span class="archive-date">'+p.date+'</span></div></li>';
           }).join('');
         }
 

@@ -118,16 +118,16 @@ a{color:var(--ink);text-decoration:none}a:hover{color:var(--gold-dark)}
   border:4px solid var(--wood-dark);padding:32px 40px;box-shadow:4px 6px 0 rgba(0,0,0,0.2);
   transition:transform .1s;position:relative}
 
-.archive-list li::before{content:'[ ]';font-family:var(--font-pixel);font-size:2rem;color:var(--ink-light);margin-right:16px}
+
 .archive-list li:hover{transform:translateX(8px)}
-.archive-list li:hover::before{content:'[x]';color:var(--emerald)}
+
 
 .archive-item{display:flex;gap:24px;align-items:baseline;flex-wrap:wrap}
 
 .archive-date{font-family:var(--font-pixel);font-size:1.8rem;color:var(--ink-light);
   padding:4px 16px;border:2px solid var(--wood-dark);background:rgba(255,255,255,0.3)}
 
-.archive-link{font-size:2.6rem}
+.archive-link{font-size:2.6rem;color:var(--ink);font-weight:700}
 
 /* ===== Projects ===== */
 .projects-grid{display:grid;grid-template-columns:1fr;gap:40px}
